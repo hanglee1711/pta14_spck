@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: lypa-typing-test
+    runtime: static
+    rootDir: web
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
