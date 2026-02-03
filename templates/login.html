@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LỜI NHẮC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 720px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 300px;
+            height: 330px;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0b4f6c;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 220px;
+            height: 34px;
+            border: none;
+            border-bottom: 2px solid #999;
+            font-size: 14px;
+            color: black;
+            padding: 5px;
+            margin-bottom: 20px;
+            outline: none;
+            background: transparent;
+        }
+
+        .input-field:focus {
+            border-bottom: 2px solid #0b4f6c;
+        }
+
+        .input-field::placeholder {
+            color: #999;
+        }
+
+        .remember {
+            width: 220px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .btn-login {
+            width: 220px;
+            height: 40px;
+            background: #0b4f6c;
+            color: white;
+            font-size: 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .btn-login:hover {
+            background: #11998e;
+        }
+
+        .btn-login:active {
+            background: #0e7c73;
+        }
+
+        .links {
+            width: 220px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .link {
+            color: #0b4f6c;
+            font-size: 12px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .link:hover {
+            color: #11998e;
+        }
+
+        .error {
+            color: #f44336;
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="title">ĐĂNG NHẬP</h1>
+
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="/login">
+                <input type="email" name="email" class="input-field" placeholder="Email" required>
+                <input type="password" name="password" class="input-field" placeholder="Password" required>
+
+                <label class="remember">
+                    <input type="checkbox" name="remember">
+                    Remember me
+                </label>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+
+            <div class="links">
+                <a href="/register" class="link">Create account</a>
+                <span class="link">Forgot password?</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

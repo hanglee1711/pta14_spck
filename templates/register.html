@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - LỜI NHẮC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 720px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 300px;
+            background: white;
+            border-radius: 20px;
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0b4f6c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            width: 220px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #0b4f6c;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .input-field {
+            width: 220px;
+            height: 34px;
+            border: none;
+            border-bottom: 2px solid #999;
+            font-size: 14px;
+            color: black;
+            padding: 5px;
+            margin-bottom: 10px;
+            outline: none;
+            background: transparent;
+        }
+
+        .input-field:focus {
+            border-bottom: 2px solid #0b4f6c;
+        }
+
+        .input-field::placeholder {
+            color: #999;
+        }
+
+        .terms {
+            width: 220px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        .btn-register {
+            width: 220px;
+            height: 40px;
+            background: #0b4f6c;
+            color: white;
+            font-size: 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .btn-register:hover {
+            background: #11998e;
+        }
+
+        .btn-register:active {
+            background: #0e7c73;
+        }
+
+        .link {
+            color: #0b4f6c;
+            font-size: 12px;
+            text-decoration: underline;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .link:hover {
+            color: #11998e;
+        }
+
+        .error {
+            color: #f44336;
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .success {
+            color: #4caf50;
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="title">ĐĂNG KÝ</h1>
+
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+
+            {% if success %}
+            <div class="success">{{ success }}</div>
+            {% endif %}
+
+            <form method="POST" action="/register">
+                <div class="label">Username</div>
+                <input type="text" name="username" class="input-field" placeholder="Username" required>
+
+                <div class="label">Email</div>
+                <input type="email" name="email" class="input-field" placeholder="Email" required>
+
+                <div class="label">Password</div>
+                <input type="password" name="password" class="input-field" placeholder="Password" required>
+
+                <div class="label">Confirm Password</div>
+                <input type="password" name="confirm" class="input-field" placeholder="Confirm Password" required>
+
+                <label class="terms">
+                    <input type="checkbox" name="terms">
+                    I agree to the terms
+                </label>
+
+                <button type="submit" class="btn-register">Register</button>
+            </form>
+
+            <a href="/login" class="link">Already have an account? Login</a>
+        </div>
+    </div>
+</body>
+</html>
