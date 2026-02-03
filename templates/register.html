@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Đăng ký - Quản lý Học tập{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1 class="auth-title">Tạo tài khoản mới</h1>
+            <p class="auth-subtitle">Đăng ký để bắt đầu quản lý học tập</p>
+
+            <form method="POST" class="auth-form">
+                <div class="form-group">
+                    <label class="form-label">Họ và tên</label>
+                    <input type="text" name="fullname" class="form-input" placeholder="Nhập họ và tên..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-input" placeholder="Nhập địa chỉ email..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Mật khẩu</label>
+                    <input type="password" name="password" class="form-input" placeholder="Nhập mật khẩu..." required>
+                </div>
+
+                {% if error %}
+                <div class="error-message">{{ error }}</div>
+                {% endif %}
+
+                <button type="submit" class="btn-primary">ĐĂNG KÝ</button>
+
+                <p class="auth-link">
+                    Đã có tài khoản? <a href="{{ url_for('login') }}">Đăng nhập</a>
+                </p>
+            </form>
+        </div>
+
+        <div class="decor-panel">
+            <div class="decor-icon">
+                <svg viewBox="0 0 120 120" width="120" height="120">
+                    <circle cx="60" cy="60" r="50" fill="rgba(255,255,255,0.15)"/>
+                    <path d="M60 28 L30 35 L30 85 L60 78 L90 85 L90 35 Z" fill="rgba(255,255,255,0.8)"/>
+                    <line x1="60" y1="28" x2="60" y2="78" stroke="#6366F1" stroke-width="2"/>
+                </svg>
+            </div>
+            <h2 class="decor-title">Quản lý học tập<br>thông minh</h2>
+            <p class="decor-text">Theo dõi kết quả, lịch học<br>và thông báo dễ dàng</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

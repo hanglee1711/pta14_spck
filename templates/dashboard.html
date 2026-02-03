@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %}Trang chủ - Quản lý Học tập{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg viewBox="0 0 40 40" width="40" height="40">
+                    <circle cx="20" cy="20" r="18" fill="#6366F1"/>
+                    <path d="M20 10 L12 13 L12 27 L20 24 L28 27 L28 13 Z" fill="white"/>
+                </svg>
+            </div>
+            <span class="logo-text">Học tập</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item {% if page == 'home' %}active{% endif %}">
+                <a href="{{ url_for('dashboard') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <li class="nav-item {% if page == 'grades' %}active{% endif %}">
+                <a href="{{ url_for('grades') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <span>Bảng điểm</span>
+                </a>
+            </li>
+            <li class="nav-item {% if page == 'schedule' %}active{% endif %}">
+                <a href="{{ url_for('schedule') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z"/>
+                    </svg>
+                    <span>Thời khóa biểu</span>
+                </a>
+            </li>
+            <li class="nav-item {% if page == 'notifications' %}active{% endif %}">
+                <a href="{{ url_for('notifications') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                    </svg>
+                    <span>Thông báo</span>
+                    {% if unread > 0 %}
+                    <span class="badge">{{ unread }}</span>
+                    {% endif %}
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                </svg>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-header">
+            <h1 class="page-title">Xin chào, {{ student.fullname if student else session.fullname }}!</h1>
+            <div class="user-info">
+                <div class="user-avatar">{{ (student.fullname if student else session.fullname)[0] }}</div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="card info-card">
+                <h3 class="card-title">Thông tin học sinh</h3>
+                {% if student %}
+                <div class="info-list">
+                    <div class="info-item">
+                        <span class="info-label">Mã học sinh</span>
+                        <span class="info-value">{{ student.student_code or 'Chưa cập nhật' }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Lớp</span>
+                        <span class="info-value">{{ student.class_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Năm học</span>
+                        <span class="info-value">{{ student.school_year }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Ngày sinh</span>
+                        <span class="info-value">{{ student.date_of_birth or 'Chưa cập nhật' }}</span>
+                    </div>
+                </div>
+                {% else %}
+                <p>Chưa có thông tin học sinh</p>
+                {% endif %}
+            </div>
+
+            <div class="card stats-card">
+                <h3 class="card-title">Điểm trung bình HK1</h3>
+                <div class="stat-value">{{ "%.2f"|format(avg) }}</div>
+                <div class="stat-label">
+                    {% if avg >= 8 %}Học lực: Giỏi{% elif avg >= 6.5 %}Học lực: Khá{% elif avg >= 5 %}Học lực: Trung bình{% else %}Học lực: Yếu{% endif %}
+                </div>
+            </div>
+
+            <div class="card schedule-card">
+                <h3 class="card-title">Lịch học hôm nay - {{ today_name }}</h3>
+                {% if today_schedule %}
+                <div class="schedule-list">
+                    {% for s in today_schedule %}
+                    <div class="schedule-item">
+                        <span class="period">Tiết {{ s.period }}</span>
+                        <span class="subject">{{ s.name }}</span>
+                        <span class="room">{{ s.room }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="empty-state">Không có tiết học hôm nay</p>
+                {% endif %}
+            </div>
+
+            <div class="card notifications-card">
+                <h3 class="card-title">Thông báo mới</h3>
+                {% if notifications %}
+                <div class="notif-list">
+                    {% for n in notifications %}
+                    <div class="notif-item">
+                        <div class="notif-title">{{ n.title }}</div>
+                        <div class="notif-date">{{ n.date_posted }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="empty-state">Không có thông báo mới</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

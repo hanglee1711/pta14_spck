@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Thời khóa biểu - Quản lý Học tập{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg viewBox="0 0 40 40" width="40" height="40">
+                    <circle cx="20" cy="20" r="18" fill="#6366F1"/>
+                    <path d="M20 10 L12 13 L12 27 L20 24 L28 27 L28 13 Z" fill="white"/>
+                </svg>
+            </div>
+            <span class="logo-text">Học tập</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item {% if page == 'home' %}active{% endif %}">
+                <a href="{{ url_for('dashboard') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <li class="nav-item {% if page == 'grades' %}active{% endif %}">
+                <a href="{{ url_for('grades') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <span>Bảng điểm</span>
+                </a>
+            </li>
+            <li class="nav-item {% if page == 'schedule' %}active{% endif %}">
+                <a href="{{ url_for('schedule') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z"/>
+                    </svg>
+                    <span>Thời khóa biểu</span>
+                </a>
+            </li>
+            <li class="nav-item {% if page == 'notifications' %}active{% endif %}">
+                <a href="{{ url_for('notifications') }}">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                    </svg>
+                    <span>Thông báo</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                </svg>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-header">
+            <h1 class="page-title">Thời khóa biểu</h1>
+            {% if student %}
+            <div class="class-info">Lớp {{ student.class_name }} - {{ student.school_year }}</div>
+            {% endif %}
+        </header>
+
+        <div class="schedule-table-container">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Tiết</th>
+                        <th>Thứ 2</th>
+                        <th>Thứ 3</th>
+                        <th>Thứ 4</th>
+                        <th>Thứ 5</th>
+                        <th>Thứ 6</th>
+                        <th>Thứ 7</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for period in range(5) %}
+                    <tr>
+                        <td class="period-num">{{ period + 1 }}</td>
+                        {% for day in range(6) %}
+                        <td class="schedule-cell">
+                            {% if schedule[period][day] %}
+                            <div class="subject-block">
+                                <div class="subject-name">{{ schedule[period][day].name }}</div>
+                                <div class="subject-room">{{ schedule[period][day].room }}</div>
+                            </div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="schedule-legend">
+            <p>Thời gian các tiết học:</p>
+            <ul>
+                <li>Tiết 1: 7:00 - 7:45</li>
+                <li>Tiết 2: 7:50 - 8:35</li>
+                <li>Tiết 3: 8:50 - 9:35</li>
+                <li>Tiết 4: 9:40 - 10:25</li>
+                <li>Tiết 5: 10:30 - 11:15</li>
+            </ul>
+        </div>
+    </main>
+</div>
+{% endblock %}
