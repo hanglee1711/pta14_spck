@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(36, 31, 49);
+  color: rgb(255, 255, 255);
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: rgb(98, 160, 234);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input {
+  background-color: rgb(61, 56, 70);
+  color: rgb(192, 191, 188);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: rgb(82, 0, 255);
+}
+
+input::placeholder {
+  color: rgb(120, 118, 114);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, rgba(255, 0, 246, 1), rgba(0, 6, 173, 1));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+}
+
+.btn-gradient:active {
+  transform: scale(0.98);
+}
+
+.error-text {
+  color: rgb(224, 27, 36);
+  font-size: 13px;
+  text-align: center;
+}

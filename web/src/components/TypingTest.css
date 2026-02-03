@@ -1,0 +1,170 @@
+.typing-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px 20px;
+  cursor: text;
+}
+
+/* Top bar: logo | title | welcome+username | logout */
+.typing-topbar {
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+  flex-shrink: 0;
+}
+
+.typing-topbar-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.typing-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.typing-brand {
+  font-size: 28px;
+  font-weight: 600;
+  color: rgb(82, 0, 255);
+}
+
+.typing-topbar-center {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.typing-welcome {
+  font-size: 20px;
+  color: rgb(222, 221, 218);
+}
+
+.typing-username {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+}
+
+.typing-topbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.typing-logout {
+  font-size: 12pt;
+  color: rgb(154, 153, 150);
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: color 0.2s;
+}
+
+.typing-logout:hover {
+  color: rgb(255, 255, 255);
+}
+
+/* Bottom section: panel + lines */
+.typing-bottom {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+
+.typing-panel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 50px;
+  margin-bottom: 20px;
+}
+
+.typing-time-label {
+  font-size: 17pt;
+  color: rgb(255, 255, 255);
+}
+
+.time-btn {
+  color: rgb(154, 153, 150);
+  background-color: transparent;
+  padding: 2px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.time-btn:hover {
+  color: rgb(222, 221, 218);
+}
+
+.time-btn-active {
+  color: rgb(255, 255, 255);
+  background-color: rgba(82, 0, 255, 0.31);
+  border-radius: 4px;
+}
+
+/* Typing area */
+.typing-area {
+  flex: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.typing-lines {
+  position: relative;
+  font-family: 'Consolas', 'Courier New', monospace;
+  line-height: 2.2;
+}
+
+.typing-line {
+  display: flex;
+  justify-content: center;
+  white-space: pre;
+}
+
+.typing-char {
+  font-size: 25px;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+.char-inactive {
+  color: rgb(192, 191, 188);
+}
+
+.char-correct {
+  color: rgb(255, 255, 255);
+}
+
+.char-incorrect {
+  color: rgb(224, 27, 36);
+}
+
+.typing-cursor {
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background-color: rgb(192, 97, 203);
+  transition: left 0.15s ease, top 0.15s ease;
+  pointer-events: none;
+}
+
+.cursor-hidden {
+  opacity: 0;
+}
+
+.typing-hidden-input {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}

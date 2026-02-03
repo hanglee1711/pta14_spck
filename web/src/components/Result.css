@@ -1,0 +1,70 @@
+.result-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 40px;
+}
+
+/* Top: WPM centered */
+.result-top {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-wpm {
+  font-size: 36px;
+  font-weight: 600;
+  color: rgb(246, 245, 244);
+  text-align: center;
+}
+
+/* Middle: stats left + graph right */
+.result-middle {
+  flex: 3;
+  display: flex;
+  gap: 20px;
+}
+
+.result-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.result-stats p {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+.result-chart-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Bottom: try again */
+.result-bottom {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-try-again {
+  font-family: 'Ubuntu Mono', 'Consolas', monospace;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(154, 153, 150);
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.result-try-again:hover {
+  color: rgb(255, 255, 255);
+}
