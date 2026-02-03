@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopBee - Đăng ký</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <h1>ShopBee</h1>
+        <p>Tạo tài khoản mới</p>
+      </div>
+
+      <div id="errorMessage" class="error-message"></div>
+      <div id="successMessage" class="success-message"></div>
+
+      <form id="registerForm" autocomplete="off">
+        <div class="form-group">
+          <label for="name">Họ tên</label>
+          <input type="text" id="name" placeholder="Nhập họ tên" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Nhập email của bạn" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms">
+          <label for="terms">Tôi đồng ý với điều khoản sử dụng</label>
+        </div>
+
+        <button type="submit" class="btn-primary">Đăng ký</button>
+      </form>
+
+      <div class="auth-footer">
+        Đã có tài khoản? <a href="index.html">Quay lại đăng nhập</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initRegisterPage);
+  </script>
+</body>
+</html>

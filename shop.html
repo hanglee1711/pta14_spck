@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopBee - Shop Game & Đồ dùng</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="shop-header">
+    <div class="logo">
+      <h1>ShopBee</h1>
+    </div>
+    <div class="header-actions">
+      <button id="btnLogout" class="btn-logout">Logout</button>
+      <div class="cart-icon-wrapper">
+        <button id="btnCartToggle" class="btn-cart">&#x1F6D2;</button>
+        <span id="cartBadge" class="cart-badge"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ PRODUCT SECTION ============ -->
+  <section class="product-section">
+    <h2>Sản phẩm</h2>
+    <div id="productGrid" class="product-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ============ CART OVERLAY ============ -->
+  <div id="cartOverlay" class="cart-overlay"></div>
+
+  <!-- ============ CART SIDEBAR ============ -->
+  <aside id="cartSidebar" class="cart-sidebar">
+    <div class="sidebar-header">
+      <h2>Giỏ hàng</h2>
+      <button id="btnCloseSidebar" class="btn-close-sidebar">&times;</button>
+    </div>
+
+    <div class="cart-content">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>SL</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cartTableBody">
+          <tr>
+            <td colspan="5" class="cart-empty">Giỏ hàng trống</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cart-footer">
+      <div id="cartTotal" class="cart-total">Tổng tiền: 0đ</div>
+      <div class="cart-actions">
+        <button id="btnClearCart" class="btn-clear">Xóa giỏ hàng</button>
+        <button id="btnPay" class="btn-pay">Thanh toán</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MODAL ============ -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-box">
+      <h3 id="modalTitle">Xác nhận</h3>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="modal-actions">
+        <button id="modalCancel" class="btn-cancel">Hủy</button>
+        <button id="modalConfirm" class="btn-confirm">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/shop.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initShopPage);
+  </script>
+</body>
+</html>

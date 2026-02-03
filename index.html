@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopBee - Đăng nhập</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <h1>ShopBee</h1>
+        <p>Shop Game & Đồ dùng Gaming</p>
+      </div>
+
+      <div id="errorMessage" class="error-message"></div>
+
+      <form id="loginForm" autocomplete="off">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Nhập email của bạn" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms">
+          <label for="terms">Tôi đồng ý với điều khoản sử dụng</label>
+        </div>
+
+        <button type="submit" class="btn-primary">Đăng nhập</button>
+      </form>
+
+      <div class="auth-footer">
+        Chưa có tài khoản? <a href="register.html">Tạo tài khoản</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initLoginPage);
+  </script>
+</body>
+</html>
