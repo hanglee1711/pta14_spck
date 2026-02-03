@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}XNote{% endblock %}
+
+{% block content %}
+<div class="app-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+        <button class="btn-logout" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+
+        <div class="notes-list" id="notesList">
+            {% for note in notes %}
+            <div class="note-item" data-index="{{ loop.index0 }}" onclick="showNote({{ loop.index0 }})">
+                {{ note.title }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-add" onclick="addNote()">+ Them</button>
+            <button class="btn-delete" onclick="deleteNote()">Xoa</button>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <input type="text" id="noteTitle" placeholder="Tieu de ghi chu">
+        <textarea id="noteContent" placeholder="Noi dung ghi chu..."></textarea>
+        <button class="btn-save" onclick="saveNote()">Luu</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentIndex = null;
+let notes = {{ notes | tojson | safe }};
+
+function showNote(index) {
+    currentIndex = index;
+    document.getElementById('noteTitle').value = notes[index].title;
+    document.getElementById('noteContent').value = notes[index].content;
+
+    document.querySelectorAll('.note-item').forEach((item, i) => {
+        item.classList.toggle('selected', i === index);
+    });
+}
+
+function addNote() {
+    currentIndex = null;
+    document.getElementById('noteTitle').value = '';
+    document.getElementById('noteContent').value = '';
+    document.querySelectorAll('.note-item').forEach(item => item.classList.remove('selected'));
+}
+
+async function saveNote() {
+    const title = document.getElementById('noteTitle').value.trim();
+    const content = document.getElementById('noteContent').value;
+
+    if (!title) {
+        alert('Chua nhap tieu de');
+        return;
+    }
+
+    const response = await fetch('/api/notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, content, id: currentIndex })
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+        alert(data.error);
+        return;
+    }
+
+    location.reload();
+}
+
+async function deleteNote() {
+    if (currentIndex === null) return;
+
+    const response = await fetch(`/api/notes/${currentIndex}`, {
+        method: 'DELETE'
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+        alert(data.error);
+        return;
+    }
+
+    location.reload();
+}
+</script>
+{% endblock %}

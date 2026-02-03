@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Login - XNote{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h1 class="title">DANG NHAP</h1>
+
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+
+        {% if request.args.get('success') %}
+        <div class="success-msg">{{ request.args.get('success') }}</div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <label class="checkbox-container">
+                <input type="checkbox" name="remember">
+                <span class="checkmark"></span>
+                Remember me
+            </label>
+
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+
+        <a href="{{ url_for('register') }}" class="link">Create account</a>
+    </div>
+</div>
+{% endblock %}

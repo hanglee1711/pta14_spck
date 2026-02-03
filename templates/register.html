@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Register - XNote{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card card-register">
+        <h1 class="title">DANG KY</h1>
+
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('register') }}">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm" placeholder="Confirm Password" required>
+
+            <label class="checkbox-container">
+                <input type="checkbox" name="terms">
+                <span class="checkmark"></span>
+                I agree to the terms
+            </label>
+
+            <button type="submit" class="btn-primary">Register</button>
+        </form>
+
+        <a href="{{ url_for('login') }}" class="link">Already have an account? Login</a>
+    </div>
+</div>
+{% endblock %}
